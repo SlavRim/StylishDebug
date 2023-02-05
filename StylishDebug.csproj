@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Configurations>1.3;1.3_DEBUG;1.4;1.4_DEBUG</Configurations>
+		<ModSharedProps>$(SolutionDir)Shared.mod.props.csproj</ModSharedProps>
+	</PropertyGroup>
+
+	<Import Project="$(ModSharedProps)" />
+
+	<ItemGroup>
+	  <None Remove="Assets\About\PublishedFileId.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="Assets\About\PublishedFileId.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Assets\About\PublishedFileId.txt" />
+	</ItemGroup>
+
+</Project>
