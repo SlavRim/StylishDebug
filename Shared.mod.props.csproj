@@ -85,8 +85,8 @@
 	</PropertyGroup>
 
 	<!-- Configure for versions -->
-
-	<!-- CHANGE TO YOUR LOCATIONS -->
+	
+	<!-- !CHANGE TO YOUR LOCATIONS! -->
 	<Choose>
 		<When Condition="'$(RefGameDir)' == ''">
 			<PropertyGroup>
@@ -143,11 +143,11 @@
 
 	<!-- Setup mod properties -->
 
-	<!-- CHANGE TO YOUR LOCATIONS -->
+	<!-- !CHANGE TO YOUR LOCATIONS! -->
 	<PropertyGroup Condition="'$(GameDir)' == ''">
 		<GameDir>D:\Steam\steamapps\common\RimWorld\</GameDir>
 	</PropertyGroup>
-
+	
 	<PropertyGroup Condition="'$(ModName)' == ''">
 		<ModName>$(AssemblyName)</ModName>
 	</PropertyGroup>
@@ -261,18 +261,18 @@
 	<Target Name="prebuild" AfterTargets="PreBuildEvent">
 		<Message Text="Building $(ModName) with configuration $(Configuration) >" Importance="high" />
 	</Target>
-
+	
 	<!-- Post build, copy all new files and try copy build -->
 	<Target Condition="!$(BatchBuild)" Name="postbuild" AfterTargets="PostBuildEvent">
 		<Exec Command="rmdir /S /Q &quot;$(ModOutputAssembliesPath)&quot;" />
-
+		
 		<Exec Command="xcopy /Y /R /S /D /I &quot;$(AssetsDir)&quot; &quot;$(ModOutputPath)&quot;" />
 		<Exec Command="xcopy /Y /R /S /D /I &quot;$(OutputPath)&quot; &quot;$(ModOutputAssembliesPath)&quot;" />
-
+		
 		<CallTarget Targets="CopyBuild" Condition="Exists('$(GameModsPath)')"/>
 		<Message Importance="high" Text="Unable to copy build to the game mods, please change path to the game(&lt;GameDir&gt;$(GameDir)&lt;/GameDir&gt;)." Condition="!Exists('$(GameModsPath)')"/>
 	</Target>
-
+	
 	<Target Name="CopyBuild">
 		<MakeDir Directories="$(ModOutputPath)" />
 		<Exec Command="rmdir /S /Q &quot;$(GameModAssembliesPath)&quot;" />
